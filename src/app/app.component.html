@@ -1,3 +1,6 @@
 <input type="text" [(ngModel)]="title">
 {{title}}
-{{"hola que tal "}}
+
+<div *ngIf="title === 'hola'">
+este es un div condicional
+</div>
