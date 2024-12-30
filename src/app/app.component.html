@@ -1,9 +1,19 @@
 <input type="text" [(ngModel)]="title">
 {{title}}
 
+<app-product></app-product>
 <div *ngIf="title === 'hola'">
 este es un div condicional
 </div>
+
+<!-- ejemplo de *ngSwitch -->
+<div [ngSwitch]="title">
+  <p *ngSwitchCase="'yordan'">este es yordan</p>
+  <p *ngSwitchCase="'juan'">este es juan</p>
+  <p *ngSwitchCase="'pedro'">este es pedro</p>
+  <p *ngSwitchDefault>no hay match</p>
+</div>
+
 <button (click)="addItem()">Agregar</button>
 <ul>
   <li *ngIf="items.length===0">La lista esta vacia</li>
