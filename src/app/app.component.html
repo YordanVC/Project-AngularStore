@@ -4,3 +4,11 @@
 <div *ngIf="title === 'hola'">
 este es un div condicional
 </div>
+<button (click)="addItem()">Agregar</button>
+<ul>
+  <li *ngIf="items.length===0">La lista esta vacia</li>
+  <li *ngFor="let item of items;index as i">
+    {{item}} {{i}}
+    <button (click)="deleteItem(i)">eliminar</button>
+  </li>
+</ul>
