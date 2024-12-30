@@ -12,3 +12,10 @@ este es un div condicional
     <button (click)="deleteItem(i)">eliminar</button>
   </li>
 </ul>
+
+<div *ngFor="let product of products">
+  <h2>{{ product.title }}</h2>
+  <img [src]="product.image" alt="">
+  <p>Descripcion: {{ product.description }}</p>
+  <h3>precio: ${{ product.price }}</h3>
+</div>
