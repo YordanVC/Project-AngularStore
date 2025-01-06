@@ -1,7 +1,10 @@
+
 <input type="text" [(ngModel)]="title">
 {{title}}
 
-<app-product></app-product>
+<input type="text" [(ngModel)]="power">
+{{power | exponential}}
+
 <div *ngIf="title === 'hola'">
 este es un div condicional
 </div>
@@ -23,9 +26,3 @@ este es un div condicional
   </li>
 </ul>
 
-<div *ngFor="let product of products">
-  <h2>{{ product.title }}</h2>
-  <img [src]="product.image" alt="">
-  <p>Descripcion: {{ product.description }}</p>
-  <h3>precio: ${{ product.price }}</h3>
-</div>
