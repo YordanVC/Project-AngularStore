@@ -1,56 +1,32 @@
-import { Component } from '@angular/core'
+import { Component, OnChanges, OnInit } from '@angular/core'
 import { Product } from '../product.model'
+import { ProductsService } from '../core/services/products/products.service';
 
 @Component({
   selector: 'app-products',
   templateUrl: './products.component.html',
   styleUrl: './products.component.css'
 })
-export class ProductsComponent {
-  products: Product[]=[
-    {
-      id: '1',
-      image: 'assets/images/camisaAzul.png',
-      title: 'Camiseta',
-      price: 20,
-      description: 'una camisa azul'
-    },
-    {
-      id: '2',
-      image: 'assets/images/camisaCivil.png',
-      title: 'Camiseta Guarida Civil',
-      price: 20,
-      description: 'una camisa de guardia civil'
-    },
-    {
-      id: '3',
-      image: 'assets/images/camisaAzul.png',
-      title: 'Camiseta',
-      price: 20,
-      description: 'una camisa azul'
-    },
-    {
-      id: '4',
-      image: 'assets/images/camisaCivil.png',
-      title: 'Camiseta Guarida Civil',
-      price: 20,
-      description: 'una camisa de guardia civil'
-    },
-    {
-      id: '5',
-      image: 'assets/images/camisaAzul.png',
-      title: 'Camiseta',
-      price: 20,
-      description: 'una camisa azul'
-    },
-    {
-      id: '6',
-      image: 'assets/images/camisaCivil.png',
-      title: 'Camiseta Guarida Civil',
-      price: 20,
-      description: 'una camisa de guardia civil'
-    }
-  ]
+export class ProductsComponent implements OnInit,OnChanges{
+  products: Product[] = []; 
+
+  constructor(private productsService: ProductsService) { } 
+
+  ngOnInit(): void {
+    this.fetchProducts()
+  }
+
+  ngOnChanges(): void {
+    this.fetchProducts();
+  }
+
+  fetchProducts(){
+    this.productsService.getAllProducts()
+    .subscribe(products=>{
+      this.products=products;
+    })
+  }
+
   clickProduct(id:number){
     console.log('product: ',id)
   }

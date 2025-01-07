@@ -1,6 +1,29 @@
-<h3 appHighlight >{{ product?.title | uppercase}}</h3>
-  <img [src]="product?.image" alt="">
-  <p>Descripcion: {{ product?.description }}</p>
-  <strong>precio: ${{ product?.price }}</strong>
-  <button (click)="AgregarCarrito()">Agregar al Carrito</button> 
-  <a [routerLink]="['/products',product?.id]">ver detalle</a>
+<div class="product-card">
+  <div class="product-image-container">
+    <img class="product-image" [src]="product?.image" alt="{{ product?.title }}">
+  </div>
+
+  <div class="product-info">
+    <h3 class="product-title" appHighlight>{{ product?.title | uppercase }}</h3>
+    
+    <p class="product-description">{{ product?.description }}</p>
+    
+    <div class="product-price">
+      ${{ product?.price }}
+    </div>
+    
+    <div class="product-actions">
+      <button 
+        class="btn btn-cart" 
+        (click)="AgregarCarrito()">
+        Agregar al Carrito
+      </button>
+      
+      <a 
+        class="btn btn-details" 
+        [routerLink]="['/products', product?.id]">
+        Ver Detalles
+      </a>
+    </div>
+  </div>
+</div>

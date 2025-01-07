@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes,PreloadAllModules } from '@angular/router';
 import {ProductsComponent} from './products/products.component'
-import{ContactComponent} from './contact/contact.component'
 import{DemoComponent} from './demo/demo.component'
 import{PageNotFoundComponent} from './page-not-found/page-not-found.component'
 import{ProductDetailComponent} from './product-detail/product-detail.component'
 import{LayoutComponent} from './layout/layout.component'
+import{adminGuard} from './admin.guard'
 const routes: Routes = [
   {
     path:'',
@@ -30,7 +30,8 @@ const routes: Routes = [
       },
       {
         path:'contact',
-        component:ContactComponent
+        canActivate:[adminGuard],
+        loadChildren:()=>import('./contact/contact.module').then(m=>m.ContactModule)
       }
     ]
   },
@@ -46,7 +47,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes,{
-    preloadingStrategy:PreloadAllModules
+    preloadingStrategy:PreloadAllModules//precarga lazy
   })],
   exports: [RouterModule]
 })
